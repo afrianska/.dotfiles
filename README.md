@@ -18,4 +18,20 @@ This is just my personal dotfiles configuration for my dekstop.
 
 # List Installed
 
+|         Item          | Value                                           |
+| :-------------------: | :---------------------------------------------- |
+|          OS           | ArchLinux                                       |
+|          WM           | Xmonad                                          |
+|         Shell         | zsh _([zimfw](https://github.com/zimfw/zimfw))_   |
+|          DM           | not use DM                                      |
+|         Font          | Mononoki, iosevka (in system, soon for home)    |
+|     Notification      | dunst                                           |
+|       Terminal        | Termite                                         |
+|       Launcher        | dmenu, gmrun                                    |
+|          Bar          | xmobar                                          |
+|       Wallpaper       | nitrogen                                        |
+|    Volume Control     | alsamixer                                       |
+| Brightness Controller | xbacklight                                      |
+|      Text Editor      | neovim                                          |
+
 
