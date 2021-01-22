@@ -12,6 +12,7 @@
 
 ![GitHub](https://img.shields.io/github/license/afrianska/.dotfiles?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/afrianska/.dotfiles?style=for-the-badge)
+![Twitter URL](https://img.shields.io/twitter/url?style=for-the-badge&url=afrianska)
 
 Hi Everyone,
 This is just my personal dotfiles configuration for my dekstop.
