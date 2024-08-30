@@ -13,21 +13,21 @@
 Hi Everyone,
 This is just my personal dotfiles configuration.
 
-# General Config
+## General Config
 
-|         Item          | Value                                           |
+|         Tool          | Name                                            |
 | :-------------------: | :---------------------------------------------- |
-|         Shell         | zsh _([zimfw](https://github.com/zimfw/zimfw))_   |
+|         Shell         | zsh                                             |
 |       Terminal        | Termite                                         |
 |      Text Editor      | neovim                                          |
 
 
 
-# Specific Config for ArchLinux
+## Specific Config for ArchLinux
 
-|         Item          | Value                                           |
+|         Tool          | Name                                            |
 | :-------------------: | :---------------------------------------------- |
-|          OS           | ArchLinux (not)                                       |
+|          OS           | ArchLinux (my old computer)                     |
 |          WM           | Xmonad                                          |
 |         Font          | Mononoki, iosevka (in system, soon for home)    |
 |     Notification      | dunst                                           |
@@ -39,3 +39,12 @@ This is just my personal dotfiles configuration.
 | Brightness Controller | xbacklight                                      |
 
 
+## Implementation
+
+Make sure clone this repository to local home.
+
+example:
+```
+ln -s /dotfiles/zsh/.zshrc .zshrc
+
+```
