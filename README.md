@@ -10,21 +10,25 @@
 
 # Dotfiles
 
-![GitHub](https://img.shields.io/github/license/afrianska/.dotfiles?style=for-the-badge)
-![GitHub repo size](https://img.shields.io/github/repo-size/afrianska/.dotfiles?style=for-the-badge)
-![Twitter URL](https://img.shields.io/twitter/url?style=for-the-badge&url=afrianska)
-
 Hi Everyone,
-This is just my personal dotfiles configuration for my dekstop.
+This is just my personal dotfiles configuration.
 
-# List Installed
+# General Config
 
 |         Item          | Value                                           |
 | :-------------------: | :---------------------------------------------- |
-|          OS           | ArchLinux                                       |
-|          WM           | Xmonad                                          |
 |         Shell         | zsh _([zimfw](https://github.com/zimfw/zimfw))_   |
-|          DM           | not use DM                                      |
+|       Terminal        | Termite                                         |
+|      Text Editor      | neovim                                          |
+
+
+
+# Specific Config for ArchLinux
+
+|         Item          | Value                                           |
+| :-------------------: | :---------------------------------------------- |
+|          OS           | ArchLinux (not)                                       |
+|          WM           | Xmonad                                          |
 |         Font          | Mononoki, iosevka (in system, soon for home)    |
 |     Notification      | dunst                                           |
 |       Terminal        | Termite                                         |
@@ -33,6 +37,5 @@ This is just my personal dotfiles configuration for my dekstop.
 |       Wallpaper       | nitrogen                                        |
 |    Volume Control     | alsamixer                                       |
 | Brightness Controller | xbacklight                                      |
-|      Text Editor      | neovim                                          |
 
 
