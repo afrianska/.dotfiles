@@ -41,10 +41,12 @@ This is just my personal dotfiles configuration.
 
 ## Implementation
 
-Make sure clone this repository to local home.
+1. Make sure you have installed the tool/app.
+2. Clone the repo.
+3. Symlink your config.
 
 example:
 ```
-ln -s /dotfiles/zsh/.zshrc .zshrc
+ln -s -f ~/.dotfiles/zsh/.zshrc .zshrc
 
 ```
