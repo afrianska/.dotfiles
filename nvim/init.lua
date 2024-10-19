@@ -294,7 +294,23 @@ require("lazy").setup({
 
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim", opts = {} },
+			{
+				"j-hui/fidget.nvim",
+				opts = {
+					-- Options related to the notification window and buffer
+					notification = {
+						window = {
+							winblend = 0, -- Background color opacity in the notification window
+							zindex = 45, -- Stacking priority of the notification window
+							x_padding = 1, -- Padding from right edge of window boundary
+							y_padding = 0, -- Padding from bottom edge of window boundary
+							align = "bottom", -- How to align the notification window
+							relative = "editor", -- What the notification window position is relative to
+							max_width = 64,
+						},
+					},
+				},
+			},
 
 			-- Allows extra capabilities provided by nvim-cmp
 			"hrsh7th/cmp-nvim-lsp",
@@ -596,6 +612,8 @@ require("lazy").setup({
 				completion = { completeopt = "menu,menuone,noinsert" },
 				formatting = {
 					format = require("nvim-highlight-colors").format,
+					fields = { "abbr", "kind", "menu" },
+					expandable_indicator = true,
 				},
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
@@ -668,9 +686,26 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		init = function()
-			vim.cmd([[colorscheme tokyonight-moon]])
-			vim.cmd.hi("Comment gui=none")
+		config = function()
+			require("tokyonight").setup({
+				style = "night",
+				transparent = true,
+				terminal_colors = true,
+				styles = {
+					comments = { italic = true },
+					keywords = { italic = true },
+					functions = { bold = true },
+				},
+				on_colors = function() -- Add this to avoid the warning
+					-- Customizing colors, leave it empty if not needed
+				end,
+				on_highlights = function() -- Add this to avoid the warning
+					-- Customizing highlights, leave it empty if not needed
+				end,
+			})
+
+			-- Apply the theme
+			vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 
