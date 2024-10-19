@@ -301,12 +301,6 @@ require("lazy").setup({
 					notification = {
 						window = {
 							winblend = 0, -- Background color opacity in the notification window
-							zindex = 45, -- Stacking priority of the notification window
-							x_padding = 1, -- Padding from right edge of window boundary
-							y_padding = 0, -- Padding from bottom edge of window boundary
-							align = "bottom", -- How to align the notification window
-							relative = "editor", -- What the notification window position is relative to
-							max_width = 64,
 						},
 					},
 				},
@@ -686,9 +680,9 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
+		init = function()
 			require("tokyonight").setup({
-				style = "night",
+				-- style = "night",
 				transparent = true,
 				terminal_colors = true,
 				styles = {
@@ -705,7 +699,11 @@ require("lazy").setup({
 			})
 
 			-- Apply the theme
-			vim.cmd([[colorscheme tokyonight]])
+			-- other setup: vim.cmd([[colorscheme tokyonight]])
+			vim.cmd.colorscheme("tokyonight-night")
+
+			-- You can configure highlights by doing something like:
+			-- vim.cmd.hi("Comment gui=none")
 		end,
 	},
 
