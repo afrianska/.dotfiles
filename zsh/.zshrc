@@ -5,6 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Disable special highlighting for Windows mounted drives
+# When use WSL
+if grep -q Microsoft /proc/version; then
+    export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34:cd=34:su=31:sg=31:tw=34:ow=34"
+fi
+# If above not work and folder still hightlighting /mnt forlde in WSL, try add code below to /etc/wsl.conf 
+# --------star code------
+# [automount]
+# options = "metadata,umask=22,fmask=11"
+# enabled = true
+# mountFsTab = true
+# -------end code----
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -45,7 +58,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 
-# Uncomment the following line to disable colors in ls.
+# Uncomment the following line to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
