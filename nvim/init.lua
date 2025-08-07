@@ -47,7 +47,11 @@ vim.opt.splitbelow = true
 -- vim.opt.list = true
 -- vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
+-- Set tab indentation
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
 vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
@@ -265,6 +269,11 @@ require("lazy").setup({
 				filters = {
 					dotfiles = true,
 				},
+				actions = {
+					open_file = {
+						quit_on_open = true,
+					},
+				},
 			})
 		end,
 	},
@@ -455,15 +464,15 @@ require("lazy").setup({
 				-- clangd = {},
 				-- gopls = {},
 				-- pyright = {},
-				-- rust_analyzer = {},
+				rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
-				--
+				ts_ls = {},
+				ruff = {},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -495,6 +504,7 @@ require("lazy").setup({
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
@@ -546,11 +556,12 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
+				python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
-				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 		},
 	},
@@ -575,12 +586,12 @@ require("lazy").setup({
 					-- `friendly-snippets` contains a variety of premade snippets.
 					--    See the README about individual language/framework/plugin snippets:
 					--    https://github.com/rafamadriz/friendly-snippets
-					-- {
-					--   'rafamadriz/friendly-snippets',
-					--   config = function()
-					--     require('luasnip.loaders.from_vscode').lazy_load()
-					--   end,
-					-- },
+					{
+						"rafamadriz/friendly-snippets",
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
 				},
 			},
 			"saadparwaiz1/cmp_luasnip",
@@ -689,7 +700,14 @@ require("lazy").setup({
 					comments = { italic = true },
 					keywords = { italic = true },
 					functions = { bold = true },
+					sidebars = "transparent",
+					floats = "transparent",
 				},
+				integrations = {
+					nvimtree = true,
+				},
+				nvimtree = { enabled = true, show_root = true },
+				indent_blankline = { enabled = true, colored_indent_levels = true },
 				on_colors = function() -- Add this to avoid the warning
 					-- Customizing colors, leave it empty if not needed
 				end,
@@ -737,10 +755,22 @@ require("lazy").setup({
 			end)
 
 			vim.g.rainbow_delimiters = { highlight = highlight }
-			require("ibl").setup({ scope = { highlight = highlight } })
+
+			require("ibl").setup({
+				scope = { highlight = highlight },
+			})
 
 			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 		end,
+	},
+
+	-- autopairs
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
 	},
 
 	{ -- Color higtlight
@@ -825,7 +855,7 @@ require("lazy").setup({
 				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
 				additional_vim_regex_highlighting = { "ruby" },
 			},
-			indent = { enable = true, disable = { "ruby" } },
+			--indent = { enable = true, disable = { "ruby" } },
 		},
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
