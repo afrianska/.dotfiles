@@ -39,15 +39,35 @@ return {
 		config = function()
 			-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 			-- This setup relate to completions.lua
+			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			require("lspconfig").lua_ls.setup({ capabilities = capabilities })
-			require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
-			require("lspconfig").ts_ls.setup({ capabilities = capabilities })
-			require("lspconfig").pyright.setup({ capabilities = capabilities })
-			require("lspconfig").ruff.setup({ capabilities = capabilities })
-			require("lspconfig").intelephense.setup({ capabilities = capabilities })
-			require("lspconfig").ruff.setup({ capabilities = capabilities })
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" }, -- Declare 'vim' as a global variable
+						},
+						workspace = {
+							--library = vim.api.nvim_get_runtime_file("", true), -- Include runtime files
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME .. "/lua",
+								-- "${3rd}/luv/library"
+								-- "${3rd}/busted/library",
+							},
+						},
+						telemetry = { enable = false },
+					},
+				},
+				capabilities = capabilities,
+			})
+			lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
+			lspconfig.pyright.setup({ capabilities = capabilities })
+			lspconfig.ruff.setup({ capabilities = capabilities })
+			lspconfig.intelephense.setup({ capabilities = capabilities })
+			lspconfig.ruff.setup({ capabilities = capabilities })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

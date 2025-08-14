@@ -1,4 +1,5 @@
 return {
+	--[[
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -30,15 +31,15 @@ return {
 			})
 
 			-- Apply the theme
-			-- other setup: vim.cmd([[colorscheme tokyonight]])
 			vim.cmd.colorscheme("tokyonight-night")
 
 			-- You can configure highlights by doing something like:
 			-- vim.cmd.hi("Comment gui=none")
 		end,
 	},
+  ]]
+	--
 
-	--[[
 	{ -- Catppuccin
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -102,6 +103,4 @@ return {
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
-    ]]
-	--
 }

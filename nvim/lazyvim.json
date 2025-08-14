@@ -1,7 +1,8 @@
 {
-  "extras": [
-
+  "globals": [
+    "vim"
   ],
+  "extras": [],
   "news": {
     "NEWS.md": "6520"
   },

@@ -17,8 +17,10 @@ return {
 				lua = { "luacheck" },
 				python = { "ruff" },
 				rust = { "clippy" }, -- Can't find in mason
-				php = { "phpcs" },
+				php = { "phpmd" },
 			}
+
+			vim.diagnostic.config({ virtual_text = true, signs = false })
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
